@@ -163,7 +163,7 @@ flask --app src.migration_exercise.manage db migrate -m "add due_date to assignm
 ```
 Then apply it:
 ```bash
-flask --app src.migration_exercise.manage db upgrade
+flask --app src.migration_exercises.manage db upgrade
 ```
 Open the generated migration file and inspect it.
 
@@ -270,9 +270,9 @@ Make sure the responses include the new fields.
 Reflection questions
 
 Answer these in your own words.
-- Why is changing the SQLAlchemy model not enough by itself?
-- What is the purpose of the migrations/ folder?
-- Why is db upgrade safer than deleting and recreating the database?
-- Why do date columns usually need conversion before being returned in JSON?
+- Why is changing the SQLAlchemy model not enough by itself? This doesnt update the actual database tables only the Python code
+- What is the purpose of the migrations/ folder? Holds the database update commands so tables can be changed
+- Why is db upgrade safer than deleting and recreating the database? So don't lose data or make mistakes to existing tables
+- Why do date columns usually need conversion before being returned in JSON? Because SQL works with strings not date objects
 
-What could go wrong if a production database already contains real data?
+What could go wrong if a production database already contains real data? Can have data no longer aligned with the new schema
