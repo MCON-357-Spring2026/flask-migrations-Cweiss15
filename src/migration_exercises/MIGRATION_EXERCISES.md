@@ -163,7 +163,7 @@ flask --app src.migration_exercise.manage db migrate -m "add due_date to assignm
 ```
 Then apply it:
 ```bash
-flask --app src.migration_exercise.manage db upgrade
+flask --app src.migration_exercises.manage db upgrade
 ```
 Open the generated migration file and inspect it.
 
