@@ -72,14 +72,18 @@ From the project root, run:
 flask --app src.migration_exercise.manage db init
 ```
 This creates the migrations/ folder.
+Add it to git so it is tracked by version control:
+```bash
+git add src/migration_exercises/migrations
+```
 
 Then generate the initial migration:
 ```bash
-flask --app src.migration_exercise.manage db migrate -m "initial schema"
+flask --app src.migration_exercises.manage db migrate -m "initial schema"
 ```
 Then apply it:
 ```bash
-flask --app src.migration_exercise.manage db upgrade
+flask --app src.migration_exercises.manage db upgrade
 ``` 
 At this point, your database should contain these tables:
 
@@ -91,7 +95,7 @@ At this point, your database should contain these tables:
 
 Run:
 ```bash
-flask --app src.migration_exercise.manage run
+flask --app src.migration_exercises.manage run
 ```
 ## Test a few endpoints.
 
@@ -99,21 +103,21 @@ flask --app src.migration_exercise.manage run
 
 From postman or curl, send:
 ```html
-POST /students
+POST /exercises/students
 Content-Type: application/json
 {
 "name": "Ava",
 "email": "ava@example.com"
 }
 Create an assignment
-POST /assignments
+POST /exercises/assignments
 Content-Type: application/json
 {
 "title": "ORM Practice",
 "max_score": 100
 }
 Create a grade
-POST /grades
+POST /exercises/grades
 Content-Type: application/json
 {
 "score": 95,
@@ -187,9 +191,9 @@ Update Grade.to_dict() so that the new comment field appears in the JSON respons
 
 After that:
 
-GET /assignments should include due_date
+GET /exercies/assignments should include due_date
 
-GET /grades should include comment
+GET /exercies/grades should include comment
 
 Part 9: Update the POST routes
 
@@ -197,12 +201,12 @@ Open src/migration_exercise/routes.py.
 
 ### TODO 10
 
-Modify the POST /assignments route so it accepts due_date from the request body.
+Modify the POST /exercies/assignments route so it accepts due_date from the request body.
 
 Use ISO format strings such as:
 ```html
 {
-"title": "ORM Practice",
+"title": "ORM Practice2",
 "max_score": 100,
 "due_date": "2026-04-01"
 }
@@ -234,17 +238,17 @@ flask --app src.migration_exercise.manage run
 ```
 Now create an assignment with a due date:
 ```html
-POST /assignments
+POST /exercies/assignments
 Content-Type: application/json
 {
-"title": "ORM Practice",
+"title": "ORM Practice2",
 "max_score": 100,
 "due_date": "2026-04-01"
 }
 ```
 Then create a grade with a comment:
 ```html
-POST /grades
+POST /exercies/grades
 Content-Type: application/json
 {
 "score": 95,
@@ -255,11 +259,11 @@ Content-Type: application/json
 ```
 Then test in browser or postman that the new fields appear in the responses for:
 
-GET /assignments
+GET /exercies/assignments
 
 and
 
-GET /grades
+GET /exercies/grades
 
 Make sure the responses include the new fields.
 
