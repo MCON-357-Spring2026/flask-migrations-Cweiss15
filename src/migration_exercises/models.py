@@ -42,6 +42,7 @@ class Assignment(db.Model):
             "id": self.id,
             "title": self.title,
             "max_score": self.max_score,
+            "due_date": self.due_date.isoformat() if self.due_date else None
         }
 
 
@@ -65,4 +66,5 @@ class Grade(db.Model):
             "score": self.score,
             "student_id": self.student_id,
             "assignment_id": self.assignment_id,
+            "comment": self.comment
         }
